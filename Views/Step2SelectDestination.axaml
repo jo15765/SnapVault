@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.Step2SelectDestination">
+  <Grid RowDefinitions="Auto,Auto,*,Auto">
+    <TextBlock Grid.Row="0" Text="Where to store the backup" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+    <TextBlock Grid.Row="1" Text="Select the destination. Estimated full backup size is shown below." Foreground="#8B9CB3" Margin="0,0,0,16"/>
+    <ListBox Grid.Row="2" x:Name="DestinationList" MinHeight="320" BorderThickness="0" Background="Transparent"
+              SelectionMode="Single" SelectionChanged="DestinationList_OnSelectionChanged" VerticalAlignment="Stretch">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="Auto,*" Margin="0,4">
+            <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" FontSize="16" Foreground="#F0F2F5" VerticalAlignment="Center" Margin="0,0,16,0"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+              <TextBlock Text="Free: " Foreground="#8B9CB3"/>
+              <TextBlock Text="{Binding FreeFormatted}" FontWeight="SemiBold" Foreground="#F0F2F5"/>
+            </StackPanel>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <Border Grid.Row="3" Background="#1A2332" CornerRadius="12" Padding="16" Margin="0,16,0,0">
+      <StackPanel>
+        <TextBlock x:Name="SizeEstimateLabel" Text="Estimated full backup size: —" FontSize="15" Foreground="#E8A838"/>
+        <TextBlock x:Name="SpaceWarningText" Text="Not enough free space on selected destination." FontSize="13" Foreground="#E85555" Margin="0,6,0,0" IsVisible="False"/>
+        <TextBlock Text="Select a destination and click Next." Foreground="#8B9CB3" Margin="0,8,0,0" FontSize="13"/>
+      </StackPanel>
+    </Border>
+  </Grid>
+</UserControl>

@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.Step4Schedule">
+  <StackPanel>
+    <TextBlock Text="Schedule backups" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+    <TextBlock Text="Set how often to run full and incremental backups. (Windows: Task Scheduler • Linux/macOS: cron/launchd)" Foreground="#8B9CB3" Margin="0,0,0,20"/>
+    <Border Background="#1A2332" CornerRadius="12" Padding="20" Margin="0,8">
+      <StackPanel>
+        <TextBlock Text="Full backup interval" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+          <TextBlock Text="Run a full backup every " Foreground="#F0F2F5" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <ComboBox x:Name="FullBackupDays" Width="80" SelectedIndex="2">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="7"/>
+            <ComboBoxItem Content="14"/>
+            <ComboBoxItem Content="30"/>
+          </ComboBox>
+          <TextBlock Text=" days" Foreground="#F0F2F5" VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,8,0,0" VerticalAlignment="Center">
+          <TextBlock Text="Run an incremental backup every " Foreground="#F0F2F5" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <ComboBox x:Name="IncrementalInterval" Width="120" SelectedIndex="2">
+            <ComboBoxItem Content="Off"/>
+            <ComboBoxItem Content="12 hours"/>
+            <ComboBoxItem Content="24 hours"/>
+            <ComboBoxItem Content="36 hours"/>
+            <ComboBoxItem Content="48 hours"/>
+          </ComboBox>
+        </StackPanel>
+        <TextBlock Text="Incremental backups only store changes since the last backup." Foreground="#8B9CB3" FontSize="12" Margin="0,8,0,0"/>
+        <TextBlock x:Name="InUseHint" Foreground="#8B9CB3" FontSize="12" Margin="0,8,0,0" TextWrapping="Wrap"/>
+      </StackPanel>
+    </Border>
+    <Border Background="#1A2332" CornerRadius="12" Margin="0,16,0,0" Padding="20">
+      <StackPanel Spacing="6">
+        <TextBlock Text="Summary" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,4"/>
+        <StackPanel x:Name="SummaryPanel" Spacing="4">
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <TextBlock Text="Source: " Foreground="#8B9CB3"/>
+            <TextBlock x:Name="SummarySource" Text="—" Foreground="#F0F2F5"/>
+            <TextBlock x:Name="SummarySourceSize" Text="" Foreground="#E8A838" FontWeight="SemiBold"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <TextBlock Text="Destination: " Foreground="#8B9CB3"/>
+            <TextBlock x:Name="SummaryDestination" Text="—" Foreground="#F0F2F5"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <TextBlock Text="Full image: " Foreground="#8B9CB3"/>
+            <TextBlock x:Name="SummaryImageName" Text="Full backup" Foreground="#F0F2F5"/>
+            <TextBlock x:Name="SummaryImageSize" Text="" Foreground="#E8A838" FontWeight="SemiBold"/>
+          </StackPanel>
+          <TextBlock x:Name="SummarySchedule" Foreground="#8B9CB3"/>
+          <TextBlock x:Name="SummaryStorage" Foreground="#8B9CB3"/>
+          <TextBlock Text="Click Finish to run the first backup and create the schedule." Foreground="#8B9CB3" Margin="0,4,0,0"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</UserControl>

@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="SnapVault.MainWindow"
+        Title="SnapVault"
+        Width="800" Height="860"
+        MinWidth="700" MinHeight="640"
+        Background="#0F1419"
+        WindowStartupLocation="CenterScreen">
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="32">
+    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,24">
+      <StackPanel Grid.Column="0">
+        <TextBlock Text="SnapVault" FontSize="28" FontWeight="Bold" Foreground="#F0F2F5"/>
+        <TextBlock Text="Backup &amp; restore • Schedule • Cloud (Windows, Linux, macOS)" FontSize="13" Foreground="#8B9CB3" Margin="0,4,0,0"/>
+      </StackPanel>
+      <Button x:Name="SwitchModeButton" Grid.Column="1" Content="Switch to Restore" Classes="secondary" VerticalAlignment="Center" Click="SwitchModeButton_OnClick" IsVisible="False"/>
+    </Grid>
+    <Border x:Name="StepIndicatorPanel" Grid.Row="1" Classes="card" Margin="0,0,0,16" Padding="16,12" IsVisible="False">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Border x:Name="Step1Border" Classes="step-indicator" Margin="0,0,8,0">
+          <TextBlock Text="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#F0F2F5"/>
+        </Border>
+        <Rectangle Width="48" Height="2" Fill="#8B9CB3" VerticalAlignment="Center" Margin="0,0,8,0"/>
+        <Border x:Name="Step2Border" Classes="step-indicator" Margin="0,0,8,0">
+          <TextBlock Text="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#F0F2F5"/>
+        </Border>
+        <Rectangle Width="48" Height="2" Fill="#8B9CB3" VerticalAlignment="Center" Margin="0,0,8,0"/>
+        <Border x:Name="Step3Border" Classes="step-indicator" Margin="0,0,8,0">
+          <TextBlock Text="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#F0F2F5"/>
+        </Border>
+        <Rectangle Width="48" Height="2" Fill="#8B9CB3" VerticalAlignment="Center" Margin="0,0,8,0"/>
+        <Border x:Name="Step4Border" Classes="step-indicator" Margin="0,0,8,0">
+          <TextBlock Text="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#F0F2F5"/>
+        </Border>
+      </StackPanel>
+    </Border>
+    <Border Grid.Row="2" Classes="card" x:Name="ContentHost">
+      <ContentControl x:Name="StepContent"/>
+    </Border>
+    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+      <Button x:Name="BackButton" Content="← Back" Classes="secondary" Margin="0,0,12,0" Click="BackButton_OnClick" IsVisible="False"/>
+      <Button x:Name="NextButton" Content="Next →" Classes="primary" Click="NextButton_OnClick"/>
+    </StackPanel>
+  </Grid>
+</Window>

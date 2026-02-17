@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.RestoreStep4Confirm">
+  <StackPanel>
+    <TextBlock Text="Confirm restore" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+    <TextBlock Text="Summary. Click Finish to download the backup from cloud and start recovery." Foreground="#8B9CB3" Margin="0,0,0,20"/>
+    <Border Background="#1A2332" CornerRadius="12" Padding="20" Margin="0,8">
+      <StackPanel Spacing="8">
+        <TextBlock x:Name="SummaryText" Foreground="#8B9CB3" TextWrapping="Wrap"/>
+        <TextBlock x:Name="RestoreRequirementsHint" Foreground="#8B9CB3" FontSize="12" TextWrapping="Wrap" Margin="0,8,0,0"/>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</UserControl>

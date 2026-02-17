@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.Step3StorageChoice">
+  <StackPanel>
+    <TextBlock Text="Keep backup on disk or move to cloud?" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+    <TextBlock Text="Keep on destination or upload to Azure Blob / S3." Foreground="#8B9CB3" Margin="0,0,0,20"/>
+    <RadioButton x:Name="KeepLocal" Content="Keep full backup on the destination only" GroupName="Storage" IsChecked="True" Checked="KeepLocal_OnChecked" Foreground="#F0F2F5" Margin="0,8"/>
+    <RadioButton x:Name="MoveToCloud" Content="Move backup to cloud storage (secure upload)" GroupName="Storage" Checked="MoveToCloud_OnChecked" Foreground="#F0F2F5" Margin="0,8"/>
+    <Border x:Name="CloudPanel" Background="#1A2332" CornerRadius="12" Padding="24" Margin="0,20,0,0" IsVisible="False">
+      <StackPanel>
+        <TextBlock Text="Cloud storage settings" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,12"/>
+        <ComboBox x:Name="ProviderCombo" SelectedIndex="0" Margin="0,0,0,12" SelectionChanged="SyncCloudConfigFromUi">
+          <ComboBoxItem Content="Azure Blob Storage"/>
+          <ComboBoxItem Content="Amazon S3 (or S3-compatible)"/>
+        </ComboBox>
+        <TextBlock Text="Container (Azure) or Bucket (S3)" Foreground="#8B9CB3" FontSize="12"/>
+        <TextBox x:Name="ContainerBucket" Margin="0,4,0,12" Padding="10,8" Background="#0F1419" Foreground="#F0F2F5" LostFocus="SyncCloudConfigFromUi"/>
+        <TextBlock Text="Account name (Azure) or Access Key ID (S3)" Foreground="#8B9CB3" FontSize="12"/>
+        <TextBox x:Name="AccountKeyId" Margin="0,4,0,12" Padding="10,8" Background="#0F1419" Foreground="#F0F2F5" LostFocus="SyncCloudConfigFromUi"/>
+        <TextBlock Text="Account key (Azure) or Secret Key (S3)" Foreground="#8B9CB3" FontSize="12"/>
+        <TextBox x:Name="SecretKey" Margin="0,4,0,12" Padding="10,8" Background="#0F1419" Foreground="#F0F2F5" PasswordChar="●" LostFocus="SyncCloudConfigFromUi"/>
+        <TextBlock Text="Region or endpoint (S3 only; optional)" Foreground="#8B9CB3" FontSize="12"/>
+        <TextBox x:Name="EndpointRegion" Margin="0,4,0,12" Padding="10,8" Background="#0F1419" Foreground="#F0F2F5" LostFocus="SyncCloudConfigFromUi"/>
+        <CheckBox x:Name="UploadAfterBackup" Content="Upload each backup to cloud after creation" Foreground="#F0F2F5" IsChecked="True" Margin="0,8,0,0"/>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</UserControl>

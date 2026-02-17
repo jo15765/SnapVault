@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.RestoreStep2SelectBackup">
+  <StackPanel>
+    <TextBlock Text="Select backup to restore" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+    <TextBlock Text="Choose backup from cloud. Click Refresh to load the list." Foreground="#8B9CB3" Margin="0,0,0,12"/>
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+      <Button x:Name="RefreshButton" Content="Refresh from cloud" Classes="secondary" Click="RefreshButton_OnClick"/>
+      <TextBlock x:Name="StatusText" VerticalAlignment="Center" Margin="12,0,0,0" Foreground="#8B9CB3"/>
+    </StackPanel>
+    <ListBox x:Name="BackupSetsList" Height="240" BorderThickness="0" Background="Transparent"
+              SelectionMode="Single" SelectionChanged="BackupSetsList_OnSelectionChanged">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="*,Auto" Margin="0,4">
+            <TextBlock Grid.Column="0" Text="{Binding DisplayName}" FontWeight="SemiBold" FontSize="15" Foreground="#F0F2F5" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="{Binding TypeLabel}" Foreground="#8B9CB3" FontSize="12" VerticalAlignment="Center"/>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </StackPanel>
+</UserControl>

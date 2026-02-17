@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.ScheduleDashboardView">
+  <StackPanel>
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+      <Button x:Name="BackToHomeButton" Content="← Back to home" Background="Transparent" Foreground="#8B9CB3" BorderThickness="0" Cursor="Hand" Click="BackToHome_OnClick" Padding="0,4"/>
+      <TextBlock Text="Schedule dashboard" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" VerticalAlignment="Center" Margin="16,0,0,0"/>
+    </StackPanel>
+    <TextBlock Text="Manage your backup schedule and view history. The app stays in the taskbar for quick access." Foreground="#8B9CB3" Margin="0,0,0,16"/>
+
+    <Border Background="#1A2332" CornerRadius="12" Padding="20" Margin="0,0,0,16">
+      <StackPanel Spacing="12">
+        <TextBlock Text="Current schedule" FontWeight="SemiBold" Foreground="#F0F2F5"/>
+        <StackPanel Orientation="Horizontal" Spacing="16">
+          <TextBlock x:Name="ScheduleSummaryText" Foreground="#8B9CB3"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,8,0,0">
+          <Button x:Name="ChangeFullScheduleButton" Content="Change full backup schedule" Classes="secondary" Click="ChangeFullSchedule_OnClick"/>
+          <Button x:Name="ChangeIncrementalButton" Content="Change incremental schedule" Classes="secondary" Click="ChangeIncremental_OnClick"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+
+    <TabControl>
+      <TabItem Header="Backup history">
+        <Border Background="#1A2332" CornerRadius="12" Padding="16" Margin="0,8,0,0">
+          <StackPanel>
+            <Button x:Name="RefreshHistoryButton" Content="Refresh" HorizontalAlignment="Right" Margin="0,0,0,8" Click="RefreshHistory_OnClick"/>
+            <ScrollViewer MaxHeight="220" VerticalScrollBarVisibility="Auto">
+              <ItemsControl x:Name="BackupHistoryList">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Border Background="#0F1419" CornerRadius="6" Padding="10" Margin="0,0,0,6">
+                      <Grid ColumnDefinitions="*,Auto,Auto">
+                        <TextBlock Grid.Column="0" Text="{Binding DisplayName}" Foreground="#F0F2F5" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{Binding TypeLabel}" Foreground="#E8A838" Margin="8,0" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Text="{Binding DateDisplay}" Foreground="#8B9CB3" FontSize="12" VerticalAlignment="Center"/>
+                      </Grid>
+                    </Border>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </ScrollViewer>
+            <TextBlock x:Name="NoHistoryText" Text="No backup history yet. Run a backup to see results here." Foreground="#8B9CB3" Margin="0,8,0,0" IsVisible="False"/>
+          </StackPanel>
+        </Border>
+      </TabItem>
+      <TabItem Header="Cloud upload status">
+        <Border Background="#1A2332" CornerRadius="12" Padding="16" Margin="0,8,0,0">
+          <StackPanel>
+            <TextBlock x:Name="CloudStatusSummary" Text="Cloud upload is not configured." Foreground="#8B9CB3" Margin="0,0,0,8"/>
+            <ScrollViewer MaxHeight="220" VerticalScrollBarVisibility="Auto">
+              <ItemsControl x:Name="UploadLogList">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Border Background="#0F1419" CornerRadius="6" Padding="10" Margin="0,0,0,6">
+                      <StackPanel Spacing="4">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                          <TextBlock Text="{Binding TimeDisplay}" Foreground="#F0F2F5" FontWeight="SemiBold"/>
+                          <TextBlock Text="{Binding StatusDisplay}" FontSize="12"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Message}" Foreground="#8B9CB3" FontSize="12" TextWrapping="Wrap"/>
+                      </StackPanel>
+                    </Border>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </ScrollViewer>
+            <TextBlock x:Name="NoUploadsText" Text="No cloud uploads recorded yet." Foreground="#8B9CB3" Margin="0,8,0,0" IsVisible="False"/>
+          </StackPanel>
+        </Border>
+      </TabItem>
+    </TabControl>
+  </StackPanel>
+</UserControl>

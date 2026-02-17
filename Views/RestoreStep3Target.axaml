@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.RestoreStep3Target">
+  <StackPanel>
+    <TextBlock Text="Where to download backup and restore to" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+    <TextBlock Text="Backup will be downloaded from cloud to the selected path. Then recovery will run. (Windows: volume e.g. C: • Linux/macOS: path e.g. /)" Foreground="#8B9CB3" Margin="0,0,0,20"/>
+    <TextBlock Text="Download backup to:" Foreground="#8B9CB3" FontSize="13" Margin="0,0,0,6"/>
+    <ListBox x:Name="DownloadDriveList" Height="120" BorderThickness="0" Background="Transparent"
+              SelectionMode="Single" SelectionChanged="DownloadDriveList_OnSelectionChanged">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="Auto,*" Margin="0,4">
+            <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" FontSize="15" Foreground="#F0F2F5" VerticalAlignment="Center" Margin="0,0,16,0"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+              <TextBlock Text="{Binding FreeFormatted}" Foreground="#8B9CB3"/>
+              <TextBlock Text=" free" Foreground="#8B9CB3" Margin="2,0,0,0"/>
+            </StackPanel>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <TextBlock Text="Recover to path (e.g. C: on Windows, / on Linux/macOS):" Foreground="#8B9CB3" FontSize="13" Margin="0,16,0,6"/>
+    <TextBox x:Name="RecoveryVolume" Text="C:" Padding="10,8" Width="120" HorizontalAlignment="Left"
+             Background="#0F1419" Foreground="#F0F2F5"/>
+  </StackPanel>
+</UserControl>

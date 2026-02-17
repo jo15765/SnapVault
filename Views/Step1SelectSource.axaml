@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.Step1SelectSource">
+  <Grid RowDefinitions="Auto,Auto,*">
+    <TextBlock Grid.Row="0" Text="Select drive/path to back up" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,0,0,8"/>
+    <TextBlock Grid.Row="1" Text="Choose the source. Used and free space are shown. (On Linux/macOS these are mount points.)" Foreground="#8B9CB3" Margin="0,0,0,16"/>
+    <ListBox Grid.Row="2" x:Name="DrivesList" MinHeight="360" BorderThickness="0" Background="Transparent"
+              SelectionMode="Single" SelectionChanged="DrivesList_OnSelectionChanged" VerticalAlignment="Stretch">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,4">
+            <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" FontSize="16" Foreground="#F0F2F5" VerticalAlignment="Center" Margin="0,0,16,0"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+              <TextBlock Text="Used: " Foreground="#8B9CB3"/>
+              <TextBlock Text="{Binding UsedFormatted}" FontWeight="SemiBold" Foreground="#F0F2F5"/>
+              <TextBlock Text="   Free: " Foreground="#8B9CB3" Margin="16,0,0,0"/>
+              <TextBlock Text="{Binding FreeFormatted}" FontWeight="SemiBold" Foreground="#F0F2F5"/>
+            </StackPanel>
+            <TextBlock Grid.Column="2" Text="{Binding FileSystem}" Foreground="#8B9CB3" FontSize="12" VerticalAlignment="Center"/>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+</UserControl>

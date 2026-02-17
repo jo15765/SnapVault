@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SnapVault.Views.PrepareFullRestoreView">
+  <StackPanel>
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+      <Button x:Name="BackToHomeButton" Content="← Back to home" Background="Transparent" Foreground="#8B9CB3" BorderThickness="0" Cursor="Hand" Click="BackToHome_OnClick" Padding="0,4"/>
+      <TextBlock Text="Prepare full system restore (live media)" FontSize="18" FontWeight="SemiBold" Foreground="#F0F2F5" VerticalAlignment="Center" Margin="16,0,0,0"/>
+    </StackPanel>
+    <TextBlock Text="Generate a script you can run from a Linux or macOS live USB. The script shows each step and progress so you're informed the whole way. Boot from live media, mount your backup and target, then run the script." Foreground="#8B9CB3" TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+    <Border Background="#1A2332" CornerRadius="12" Padding="20" Margin="0,0,0,16">
+      <StackPanel Spacing="12">
+        <TextBlock Text="Backup location" FontWeight="SemiBold" Foreground="#F0F2F5"/>
+        <TextBlock Text="Drive or path where your SnapVault backup is (e.g. /Volumes/MyDisk or /media/backup). The backup folder is SnapVault/ under this path." Foreground="#8B9CB3" FontSize="12" TextWrapping="Wrap"/>
+        <TextBox x:Name="BackupRootPath" Watermark="e.g. /Volumes/BackupDrive or /media/backup" Padding="10,8" Background="#0F1419" Foreground="#F0F2F5" LostFocus="BackupRootPath_LostFocus"/>
+        <TextBlock Text="Backup to restore (optional)" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,8,0,0"/>
+        <ComboBox x:Name="BackupFolderCombo" PlaceholderText="Latest backup" MinWidth="200" HorizontalAlignment="Left"/>
+        <TextBlock Text="Restore target path" FontWeight="SemiBold" Foreground="#F0F2F5" Margin="0,8,0,0"/>
+        <TextBlock Text="Path where the OS will be restored (e.g. /mnt/root on Linux, or /Volumes/Macintosh HD on macOS). You will mount this in live media before running the script." Foreground="#8B9CB3" FontSize="12" TextWrapping="Wrap"/>
+        <TextBox x:Name="TargetPath" Text="/mnt/root" Padding="10,8" Background="#0F1419" Foreground="#F0F2F5"/>
+        <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,16,0,0">
+          <Button x:Name="GenerateButton" Content="Generate restore script" Classes="primary" Click="Generate_OnClick"/>
+          <Button x:Name="SaveToFolderButton" Content="Save script to USB / folder…" Classes="secondary" Click="SaveToFolder_OnClick"/>
+        </StackPanel>
+        <TextBlock x:Name="StatusText" Foreground="#E8A838" TextWrapping="Wrap" Margin="0,8,0,0" IsVisible="False"/>
+      </StackPanel>
+    </Border>
+
+    <Border Background="#0F1419" CornerRadius="12" Padding="16" Margin="0,0,0,8">
+      <StackPanel Spacing="8">
+        <TextBlock Text="What happens when you run the script" FontWeight="SemiBold" Foreground="#F0F2F5"/>
+        <TextBlock Text="[Step 1/5] Checks you are running as root (sudo)." Foreground="#8B9CB3" FontSize="12"/>
+        <TextBlock Text="[Step 2/5] Locates your backup (Full_* or Incremental_* folder)." Foreground="#8B9CB3" FontSize="12"/>
+        <TextBlock Text="[Step 3/5] Confirms restore target and waits 5 seconds so you can cancel." Foreground="#8B9CB3" FontSize="12"/>
+        <TextBlock Text="[Step 4/5] Runs rsync with live progress — you see each file and transfer progress." Foreground="#8B9CB3" FontSize="12"/>
+        <TextBlock Text="[Step 5/5] Reports completion and any follow-up (e.g. bootloader on Linux)." Foreground="#8B9CB3" FontSize="12"/>
+      </StackPanel>
+    </Border>
+
+    <Expander Header="Restore instructions (saved with the script)" IsExpanded="False">
+      <ScrollViewer MaxHeight="200" VerticalScrollBarVisibility="Auto">
+        <TextBlock x:Name="InstructionsPreview" Foreground="#8B9CB3" FontSize="12" TextWrapping="Wrap"/>
+      </ScrollViewer>
+    </Expander>
+  </StackPanel>
+</UserControl>
